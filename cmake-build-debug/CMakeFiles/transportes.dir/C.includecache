@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/joaoc/CLionProjects/transportes/main.c
+stdio.h
+C:/Users/joaoc/CLionProjects/transportes/stdio.h
+string.h
+C:/Users/joaoc/CLionProjects/transportes/string.h
+stdlib.h
+C:/Users/joaoc/CLionProjects/transportes/stdlib.h
+time.h
+C:/Users/joaoc/CLionProjects/transportes/time.h
+conio.h
+C:/Users/joaoc/CLionProjects/transportes/conio.h
+
