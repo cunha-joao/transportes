@@ -4,7 +4,7 @@
 #include "time.h"
 #include "conio.h"
 
-//Definição de structs
+//DEFINICAO DE STRUCTS
 typedef struct carga{
     char cliente[100];
     char origem[50];
@@ -19,6 +19,8 @@ typedef struct camiao{
     float cargamax;
     int mes, ano;
     float custo_km;
+    float custo_ton;
+    float carga_atual;
     CARGA cargas[50];
 }CAMIAO;
 
@@ -40,21 +42,33 @@ void any_key() {
 
 //Listar camiao
 void listar_camiao(CAMIAO camiao, int i){
-
     printf("Camiao n%i\n", i);
-    printf("Matricula:%s\n", camiao.matricula);
-    printf("Carga maxima:%.2f\n", camiao.cargamax);
-    printf("Data de Inspecao:%i/%i\n", camiao.mes, camiao.ano);
-    printf("Custo por km:%.2f\n", camiao.custo_km);
+    printf("Matricula: %s\n", camiao.matricula);
+    printf("Carga maxima: %.2f\n", camiao.cargamax);
+    printf("Carga atual: %.2f\n", camiao.carga_atual);
+    printf("Data de inspecao(mes/ano): %i/%i\n", camiao.mes, camiao.ano);
+    printf("Custo por km: %.2f\n", camiao.custo_km);
+    printf("Custo por tonelada: %.2f\n", camiao.custo_ton);
     printf("\n");
 }
 
-//Inserir camiao
+//Listar carga
+void listar_carga(CARGA carga, int i){
+    printf("Carga n%i\n", i);
+    printf("Nome do cliente: %s\n", carga.cliente);
+    printf("Origem: %s\n", carga.origem);
+    printf("Destino: %s\n", carga.destino);
+    printf("Distancia: %.2f\n", carga.distancia);
+    printf("Custo da carga: %.2f\n", carga.custo);
+    printf("\n");
+}
+
+//1 - Inserir camiao
 void inserir_camiao(CAMIAO camioes[20], int *num_camioes){
     CAMIAO camiao;
 
     printf("Matricula:\n");
-    scanf("%s", &camiao.matricula);
+    scanf("%s", camiao.matricula);
     fflush(stdin);
 
     printf("Carga maxima:\n");
@@ -69,6 +83,11 @@ void inserir_camiao(CAMIAO camioes[20], int *num_camioes){
     printf("Custo por km:\n");
     scanf("%f", &camiao.custo_km);
 
+    printf("Custo por tonelada:\n");
+    scanf("%f", &camiao.custo_ton);
+
+    camiao.carga_atual=0;
+
     camioes[*num_camioes] = camiao;
     (*num_camioes)++;
 
@@ -76,7 +95,7 @@ void inserir_camiao(CAMIAO camioes[20], int *num_camioes){
     return;
 }
 
-//Mostrar informacao
+//2 - Mostrar informacao
 void mostrar_info(CAMIAO camioes[20],int *num_camioes){
     char pesquisa[100];
     int i;
@@ -93,41 +112,60 @@ void mostrar_info(CAMIAO camioes[20],int *num_camioes){
     printf("Matricula nao encontrada!");
 }
 
-//Alterar informacao
-void alterar_info(){
-    CAMIAO camiao;
-    char pesquisa;
+//3 - Alterar informacao!!!
+void alterar_info(CAMIAO camioes[20],int *num_camioes){
+    char pesquisa[100];
+    int i;
 
     printf("Selecione a matricula do camiao a alterar:\n");
     scanf("%s", &pesquisa);
 
-    return;
+    for(i = 0; i < *num_camioes; i++){
+        if(strcmp(camioes[i].matricula, pesquisa) == 0){
+            return;
+        }
+    }
+    printf("Matricula nao encontrada!");
 }
 
-//Eliminar informacao
-void eliminar_info(){
-    CAMIAO camiao;
-    char pesquisa_info;
+//4 - Eliminar informacao
+void eliminar_info(CAMIAO camioes[20], int *num_camioes){
+    char pesquisa[100];
+    int i, j;
 
-    printf("Seleciona a matricula do camiao a eliminar:\n");
-    scanf("%s", &pesquisa_info);
+    printf("Selecione a matricula do camiao:\n");
+    scanf("%s", pesquisa);
 
-    return;
+    for(i = 0; i < *num_camioes; i++){
+        if(strcmp(camioes[i].matricula, pesquisa) == 0){
+            for(j = i; j < *num_camioes; j++){
+                camioes[j] = camioes[j + 1];
+                (*num_camioes)--;
+            }
+            printf("Camiao eliminado!");
+            return;
+        }
+    }
+    printf("Matricula nao encontrada!");
 }
 
-//Atribuir cargas
-void atribuir_carga(){
+//2 - Atribuir cargas!!!
+void atribuir_carga(CAMIAO camioes[20], CARGA cargas[20], int *num_camioes, int *num_cargas){
     CARGA carga;
-    CAMIAO camiao;
+    int i;
+    int calculo, resultado;
 
     printf("Nome do cliente:\n");
-    scanf("%s", &carga.cliente);
+    scanf("%s", carga.cliente);
+    fflush(stdin);
 
     printf("Local de origem:\n");
-    scanf("%s", &carga.origem);
+    scanf("%s", carga.origem);
+    fflush(stdin);
 
     printf("Local de destino:\n");
-    scanf("%s", &carga.destino);
+    scanf("%s", carga.destino);
+    fflush(stdin);
 
     printf("Distancia:\n");
     scanf("%f", &carga.distancia);
@@ -135,12 +173,38 @@ void atribuir_carga(){
     printf("Peso:\n");
     scanf("%f", &carga.peso);
 
-    //Calcula custo da carga
+    for(i = 0; i < *num_camioes; i++){
+        if(carga.peso + camioes[i].carga_atual < camioes[i].cargamax){
+            camioes[i].carga_atual = camioes[i].carga_atual + carga.peso;
+
+            cargas[*num_cargas] = carga;
+            (*num_cargas)++;
+
+            carga.custo = 100;
+            //Calcula custo da carga
+            /*calculo = (carga.distancia / 100);
+            resultado = (calculo - calculo % 1);
+
+            if(calculo%1 > 0){
+                resultado = ((resultado + 1) * 100);
+            }else{
+                resultado = resultado * 100;
+            }
+
+            printf("%i\n", resultado);*/
+
+            printf("Carga atribuida com sucesso!");
+            return;
+        }
+    }
+    printf("Ocorreu um erro!");
+
+
 }
 
-//Listar frota de camioes
+//1 - Listar frota de camioes
 void listar_frota(CAMIAO camioes[20], int *num_camioes){
-    int i = 0;
+    int i;
 
     for(i =0 ; i < *num_camioes; i++){
         listar_camiao(camioes[i], i);
@@ -148,29 +212,43 @@ void listar_frota(CAMIAO camioes[20], int *num_camioes){
     return;
 }
 
-//Listar cargas de um camiao
-void listar_carga(){
-    CAMIAO camiao;
-    char pesquisa;
+//2 - Listar cargas de um camiao!!!
+void listar_cargas(CAMIAO camioes[20], CARGA cargas[10],int *num_camioes, int *num_cargas){
+    char pesquisa[100];
+    int i, j;
 
-    printf("Digite a matricula do camiao:\n");
-    scanf("%s", &pesquisa);
+    printf("Selecione a matricula do camiao:\n");
+    scanf("%s", pesquisa);
 
-    return;
+    for(i = 0; i < *num_camioes; i++){
+        if(strcmp(camioes[i].matricula, pesquisa) == 0){
+            for(j = 0; j < *num_cargas; j++){
+                listar_carga(cargas[i], i);
+                return;
+            }
+        }
+    }
+    printf("Matricula nao encontrada!");
 }
 
-//Listar transportes de um cliente
-void listar_transportes(){
-    CAMIAO camiao;
-    char pesquisa;
+//3 - Listar transportes de um cliente!!!
+void listar_transportes(CARGA cargas[10], int *num_cargas){
+    char pesquisa[100];
+    int i;
 
     printf("Digite o nome do cliente:\n");
-    scanf("%s", &pesquisa);
+    scanf("%s", pesquisa);
 
-    return;
+    for(i = 0; i < *num_cargas; i++){
+        if(strcmp(cargas[i].cliente, pesquisa) == 0){
+            listar_carga(cargas[i], i);
+            return;
+        }
+    }
+    printf("Nome nao encontrado!");
 }
 
-//Listar camioes com inspecao
+//4 - Listar camioes com inspecao
 void listar_inspecao(CAMIAO camioes[20], int *num_camioes){
     int i = 0;
 
@@ -187,7 +265,7 @@ void listar_inspecao(CAMIAO camioes[20], int *num_camioes){
 }
 
 
-//Menu "Gerir camioes"
+//1 - Menu "Gerir camioes"
 void menu_gerir(CAMIAO camioes[20], int *num_camioes){
     int opcao;
 
@@ -213,16 +291,20 @@ void menu_gerir(CAMIAO camioes[20], int *num_camioes){
                 any_key();
                 break;
             case 3:
+                alterar_info(camioes, num_camioes);
+                any_key();
                 break;
             case 4:
+                eliminar_info(camioes, num_camioes);
+                any_key();
                 break;
         }
     } while (opcao != 0);
     return;
 }
 
-//Menu "Listar informacao"
-void menu_listar(CAMIAO camioes[20], int *num_camioes){
+//3 - Menu "Listar informacao"
+void menu_listar(CAMIAO camioes[20], CARGA cargas[10], int *num_camioes, int *num_cargas){
     int opcao;
 
     do {
@@ -243,8 +325,12 @@ void menu_listar(CAMIAO camioes[20], int *num_camioes){
                 any_key();
                 break;
             case 2:
+                listar_cargas(camioes, cargas, num_camioes, num_cargas);
+                any_key();
                 break;
             case 3:
+                listar_transportes(cargas, num_cargas);
+                any_key();
                 break;
             case 4:
                 listar_inspecao(camioes, num_camioes);
@@ -255,15 +341,17 @@ void menu_listar(CAMIAO camioes[20], int *num_camioes){
     return;
 }
 
-
+//MAIN
 int main() {
     int opcao;
     int num_camioes = 0;
+    int num_cargas = 0;
     CAMIAO camioes[20];
+    CARGA cargas[10];
 
 
     do {
-        //Definir o menu inicial
+        //Menu inicial
         clear_menu();
 
         printf("1 - Gerir camioes;\n");
@@ -280,10 +368,11 @@ int main() {
                 menu_gerir(camioes, &num_camioes);
                 break;
             case 2:
+                atribuir_carga(camioes, cargas, &num_camioes, &num_cargas);
                 any_key();
                 break;
             case 3:
-                menu_listar(camioes, &num_camioes);
+                menu_listar(camioes, cargas, &num_camioes, &num_cargas);
                 break;
         }
     } while (opcao != 0);
