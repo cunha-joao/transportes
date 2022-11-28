@@ -1,6 +1,5 @@
 #include "stdio.h"
 #include "string.h"
-#include "stdlib.h"
 #include "time.h"
 #include "conio.h"
 
@@ -92,7 +91,6 @@ void inserir_camiao(CAMIAO camioes[20], int *num_camioes){
     (*num_camioes)++;
 
     printf("Camiao adicionado!");
-    return;
 }
 
 //2 - Mostrar informacao
@@ -112,16 +110,39 @@ void mostrar_info(CAMIAO camioes[20],int *num_camioes){
     printf("Matricula nao encontrada!");
 }
 
-//3 - Alterar informacao!!!
+//3 - Alterar informacao
 void alterar_info(CAMIAO camioes[20],int *num_camioes){
     char pesquisa[100];
     int i;
 
     printf("Selecione a matricula do camiao a alterar:\n");
-    scanf("%s", &pesquisa);
+    scanf("%s", pesquisa);
 
     for(i = 0; i < *num_camioes; i++){
         if(strcmp(camioes[i].matricula, pesquisa) == 0){
+
+            printf("Matricula:\n");
+            scanf("%s", camioes[i].matricula);
+            fflush(stdin);
+
+            printf("Carga maxima:\n");
+            scanf("%f", &camioes[i].cargamax);
+
+            printf("Mes de inspecao:\n");
+            scanf("%i", &camioes[i].mes);
+
+            printf("Ano de inspecao:\n");
+            scanf("%i", &camioes[i].ano);
+
+            printf("Custo por km:\n");
+            scanf("%f", &camioes[i].custo_km);
+
+            printf("Custo por tonelada:\n");
+            scanf("%f", &camioes[i].custo_ton);
+
+            camioes[i].carga_atual=0;
+
+            printf("Informacao alterada!");
             return;
         }
     }
@@ -206,10 +227,13 @@ void atribuir_carga(CAMIAO camioes[20], CARGA cargas[20], int *num_camioes, int 
 void listar_frota(CAMIAO camioes[20], int *num_camioes){
     int i;
 
-    for(i =0 ; i < *num_camioes; i++){
+    if(*num_camioes == 0){
+        printf("Nao tem nenhum camiao registado!");
+    }
+
+    for (i = 0; i < *num_camioes; i++) {
         listar_camiao(camioes[i], i);
     }
-    return;
 }
 
 //2 - Listar cargas de um camiao!!!
@@ -250,20 +274,22 @@ void listar_transportes(CARGA cargas[10], int *num_cargas){
 
 //4 - Listar camioes com inspecao
 void listar_inspecao(CAMIAO camioes[20], int *num_camioes){
-    int i = 0;
+    int i;
 
     time_t data_atual;
     data_atual = time(NULL);
     struct tm tm = *localtime(&data_atual);
 
-    for (int i = 0; i < *num_camioes; i++) {
+    if(*num_camioes == 0){
+        printf("Nao tem nenhum camiao registado!");
+    }
+
+    for (i = 0; i < *num_camioes; i++) {
         if(camioes[i].mes == tm.tm_mon + 1 && camioes[i].ano == tm.tm_year + 1900){
             listar_camiao(camioes[i], i);
         }
     }
-    return;
 }
-
 
 //1 - Menu "Gerir camioes"
 void menu_gerir(CAMIAO camioes[20], int *num_camioes){
