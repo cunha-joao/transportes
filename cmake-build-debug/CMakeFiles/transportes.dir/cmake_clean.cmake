@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/transportes.dir/camioes.c.obj"
   "CMakeFiles/transportes.dir/main.c.obj"
+  "CMakeFiles/transportes.dir/menus.c.obj"
   "libtransportes.dll.a"
   "transportes.exe"
   "transportes.exe.manifest"

@@ -74,7 +74,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/joaoc/CLionProjects/transportes/camioes.c">
+			<Option target="transportes"/>
+		</Unit>
+		<Unit filename="C:/Users/joaoc/CLionProjects/transportes/camioes.h">
+			<Option target="transportes"/>
+		</Unit>
 		<Unit filename="C:/Users/joaoc/CLionProjects/transportes/main.c">
+			<Option target="transportes"/>
+		</Unit>
+		<Unit filename="C:/Users/joaoc/CLionProjects/transportes/menus.c">
+			<Option target="transportes"/>
+		</Unit>
+		<Unit filename="C:/Users/joaoc/CLionProjects/transportes/menus.h">
 			<Option target="transportes"/>
 		</Unit>
 		<Unit filename="C:/Users/joaoc/CLionProjects/transportes/CMakeLists.txt">

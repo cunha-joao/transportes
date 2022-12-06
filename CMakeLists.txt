@@ -3,4 +3,4 @@ project(transportes C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(transportes main.c)
+add_executable(transportes main.c menus.c menus.h camioes.c camioes.h)

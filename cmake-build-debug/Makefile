@@ -128,6 +128,30 @@ transportes/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\transportes.dir\build.make CMakeFiles/transportes.dir/build
 .PHONY : transportes/fast
 
+camioes.obj: camioes.c.obj
+.PHONY : camioes.obj
+
+# target to build an object file
+camioes.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\transportes.dir\build.make CMakeFiles/transportes.dir/camioes.c.obj
+.PHONY : camioes.c.obj
+
+camioes.i: camioes.c.i
+.PHONY : camioes.i
+
+# target to preprocess a source file
+camioes.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\transportes.dir\build.make CMakeFiles/transportes.dir/camioes.c.i
+.PHONY : camioes.c.i
+
+camioes.s: camioes.c.s
+.PHONY : camioes.s
+
+# target to generate assembly for a file
+camioes.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\transportes.dir\build.make CMakeFiles/transportes.dir/camioes.c.s
+.PHONY : camioes.c.s
+
 main.obj: main.c.obj
 .PHONY : main.obj
 
@@ -152,6 +176,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\transportes.dir\build.make CMakeFiles/transportes.dir/main.c.s
 .PHONY : main.c.s
 
+menus.obj: menus.c.obj
+.PHONY : menus.obj
+
+# target to build an object file
+menus.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\transportes.dir\build.make CMakeFiles/transportes.dir/menus.c.obj
+.PHONY : menus.c.obj
+
+menus.i: menus.c.i
+.PHONY : menus.i
+
+# target to preprocess a source file
+menus.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\transportes.dir\build.make CMakeFiles/transportes.dir/menus.c.i
+.PHONY : menus.c.i
+
+menus.s: menus.c.s
+.PHONY : menus.s
+
+# target to generate assembly for a file
+menus.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\transportes.dir\build.make CMakeFiles/transportes.dir/menus.c.s
+.PHONY : menus.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -161,9 +209,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... transportes
+	@echo ... camioes.obj
+	@echo ... camioes.i
+	@echo ... camioes.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... menus.obj
+	@echo ... menus.i
+	@echo ... menus.s
 .PHONY : help
 
 

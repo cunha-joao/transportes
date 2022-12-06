@@ -6,15 +6,31 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/joaoc/CLionProjects/transportes/main.c
+C:/Users/joaoc/CLionProjects/transportes/camioes.c
+camioes.h
+C:/Users/joaoc/CLionProjects/transportes/camioes.h
+
+C:/Users/joaoc/CLionProjects/transportes/camioes.h
 stdio.h
 C:/Users/joaoc/CLionProjects/transportes/stdio.h
 string.h
 C:/Users/joaoc/CLionProjects/transportes/string.h
-stdlib.h
-C:/Users/joaoc/CLionProjects/transportes/stdlib.h
 time.h
 C:/Users/joaoc/CLionProjects/transportes/time.h
 conio.h
 C:/Users/joaoc/CLionProjects/transportes/conio.h
+
+C:/Users/joaoc/CLionProjects/transportes/main.c
+camioes.h
+C:/Users/joaoc/CLionProjects/transportes/camioes.h
+menus.h
+C:/Users/joaoc/CLionProjects/transportes/menus.h
+
+C:/Users/joaoc/CLionProjects/transportes/menus.c
+menus.h
+C:/Users/joaoc/CLionProjects/transportes/menus.h
+
+C:/Users/joaoc/CLionProjects/transportes/menus.h
+camioes.h
+C:/Users/joaoc/CLionProjects/transportes/camioes.h
 
