@@ -6,7 +6,6 @@
 
 //DEFINICAO DE FUNCOES
 
-// Limpar menu
 void clear_menu() {
     int i;
     for(i = 0; i < 5; i++) {
@@ -14,13 +13,11 @@ void clear_menu() {
     }
 }
 
-//Aguardar por uma chave
 void any_key() {
     printf("\nPress enter to continue...");
     getch();
 }
 
-//Listar camiao
 void listar_camiao(CAMIAO camiao, int i){
     printf("Camiao n%i\n", i);
     printf("Matricula: %s\n", camiao.matricula);
@@ -32,7 +29,6 @@ void listar_camiao(CAMIAO camiao, int i){
     printf("\n");
 }
 
-//Listar carga
 void listar_carga(CARGA carga, int i){
     printf("Carga n%i\n", i);
     printf("Nome do cliente: %s\n", carga.cliente);
@@ -44,7 +40,6 @@ void listar_carga(CARGA carga, int i){
     printf("\n");
 }
 
-//1 - Inserir camiao
 void inserir_camiao(CAMIAO camioes[20], int *num_camioes){
     CAMIAO camiao;
     int i;
@@ -80,7 +75,6 @@ void inserir_camiao(CAMIAO camioes[20], int *num_camioes){
     printf("Camiao adicionado!");
 }
 
-//2 - Mostrar informacao
 void mostrar_info(CAMIAO camioes[20],int *num_camioes){
     char pesquisa[100];
     int i;
@@ -97,7 +91,6 @@ void mostrar_info(CAMIAO camioes[20],int *num_camioes){
     printf("Matricula nao encontrada!");
 }
 
-//3 - Alterar informacao
 void alterar_info(CAMIAO camioes[20],int *num_camioes){
     char pesquisa[100];
     int i;
@@ -136,7 +129,6 @@ void alterar_info(CAMIAO camioes[20],int *num_camioes){
     printf("Matricula nao encontrada!");
 }
 
-//4 - Eliminar informacao
 void eliminar_info(CAMIAO camioes[20], int *num_camioes){
     char pesquisa[100];
     int i, j;
@@ -157,7 +149,6 @@ void eliminar_info(CAMIAO camioes[20], int *num_camioes){
     printf("Matricula nao encontrada!");
 }
 
-//2 - Atribuir cargas
 void atribuir_carga(CAMIAO *camiao){
     int i;
     int calc_dist, res_dist;
@@ -239,7 +230,6 @@ void atribuir_carga(CAMIAO *camiao){
     }
 }
 
-//2.1 - Selecionar camiao para atribuir carga
 void inserir_carga(CAMIAO camioes[20], int *num_camioes){
     char pesquisa[100];
     int i;
@@ -256,7 +246,6 @@ void inserir_carga(CAMIAO camioes[20], int *num_camioes){
     printf("Matricula nao encontrada!");
 }
 
-//1 - Listar frota de camioes
 void listar_frota(CAMIAO camioes[20], int *num_camioes){
     int i;
 
@@ -269,7 +258,6 @@ void listar_frota(CAMIAO camioes[20], int *num_camioes){
     }
 }
 
-//2 - Listar cargas de um camiao
 void listar_cargas(CAMIAO camioes[20], int *num_camioes){
     char pesquisa[100];
     int i, j;
@@ -293,7 +281,6 @@ void listar_cargas(CAMIAO camioes[20], int *num_camioes){
     }
 }
 
-//3 - Listar transportes de um cliente!!!
 void listar_transportes(CAMIAO camioes[20], int *num_camioes){
     char pesquisa[100];
     int i, j;
@@ -317,7 +304,6 @@ void listar_transportes(CAMIAO camioes[20], int *num_camioes){
     }
 }
 
-//4 - Listar camioes com inspecao
 void listar_inspecao(CAMIAO camioes[20], int *num_camioes){
     int i;
 

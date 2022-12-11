@@ -8,7 +8,6 @@ int main() {
     CAMIAO camioes[20];
 
     do {
-        //Menu inicial
         clear_menu();
 
         printf("1 - Gerir camioes;\n");
